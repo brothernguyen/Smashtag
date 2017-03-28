@@ -9,12 +9,14 @@
 import UIKit
 import Twitter
 
-class TweetTableViewController: UITableViewController {
+class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     private var tweets = [Array<Twitter.Tweet>]()
     
     var searchText: String? {
         didSet {
+            searchTextField?.text = searchText
+            searchTextField?.resignFirstResponder()
             tweets.removeAll()
             tableView.reloadData()
             searchForTweets()
@@ -49,11 +51,24 @@ class TweetTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        searchText = "#stanford"
+//        searchText = "#stanford"
     }
     
     // MARK: - Table view data source
 
+    @IBOutlet weak var searchTextField: UITextField! {
+        didSet {
+            searchTextField.delegate = self
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == searchTextField {
+            searchText = searchTextField.text
+        }
+        return true
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return tweets.count
