@@ -95,6 +95,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ZWc-zS-zkq"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="q3e-jB-Q4p">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refresh:" destination="ciE-DN-d3V" eventType="valueChanged" id="DIJ-is-uNj"/>
+                        </connections>
+                    </refreshControl>
                     <connections>
                         <outlet property="searchTextField" destination="1HY-bC-Afg" id="jj9-V6-bs0"/>
                     </connections>
